@@ -6,7 +6,15 @@ import MovieDetail from "../components/moviedetail"
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsPinAngle } from 'react-icons/bs';
-import {Glyphicon, Panel} from 'react-bootstrap';
+// import {Glyphicon, Panel} from 'react-bootstrap';
+
+// Please note that I have looked up on the internet alternatives for the Glyphicon and I found this
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+
+
+import {Card} from 'react-bootstrap'
+
 import {Image} from 'react-bootstrap';
 
 // support routing
@@ -46,7 +54,7 @@ class Movie extends Component {
             return reviews.map((review, i) =>
                 <p key={i}>
                     <b>{review.username}</b> {review.review}
-                    <Glyphicon glyph={'start'} /> {review.rating}
+                    <FontAwesomeIcon icon={faStar} /> {review.rating}
                 </p>
         )
         }
@@ -56,16 +64,16 @@ class Movie extends Component {
                 return <div>Loading...</div>;
             }
             return(
-                <Panel>
-                    <Panel.Heading>Movie Detail</Panel.Heading>
-                    <Panel.Body><Image className="image" src={currentMovie.imageUrl} thumbnail/></Panel.Body>
+                <Card>
+                    <Card.Heading>Movie Detail</Card.Heading>
+                    <Card.Body><Image className="image" src={currentMovie.imageUrl} thumbnail/></Card.Body>
                     <ListGroup>
                         <ListGroupItem>{currentMovie.title}</ListGroupItem>
                         <ListGroupItem><ActorInfo actors={currentMovie.actors} /></ListGroupItem>
-                        <ListGroupItem><h4><Glyphicon glyph={'star'}/> {currentMovie.avgRating}</h4></ListGroupItem>
+                        <ListGroupItem><h4><FontAwesomeIcon icon={faStar}/> {currentMovie.avgRating}</h4></ListGroupItem>
                     </ListGroup>
-                    <Panel.Body><ReviewInfo reviews={currentMovie.reviews} /></Panel.Body>
-                </Panel>
+                    <Card.Body><ReviewInfo reviews={currentMovie.reviews} /></Card.Body>
+                </Card>
             );
         }
         return (
