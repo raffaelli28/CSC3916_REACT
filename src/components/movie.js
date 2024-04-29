@@ -9,9 +9,9 @@ import { BsPinAngle } from 'react-icons/bs';
 // import {Glyphicon, Panel} from 'react-bootstrap';
 
 // Please note that I have looked up on the internet alternatives for the Glyphicon and I found this
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faStar } from '@fortawesome/free-solid-svg-icons';
+import {BsStarfill} from 'react-icons/bs'
 
 import {Card} from 'react-bootstrap'
 
@@ -54,7 +54,7 @@ class Movie extends Component {
             return reviews.map((review, i) =>
                 <p key={i}>
                     <b>{review.username}</b> {review.review}
-                    <FontAwesomeIcon icon={faStar} /> {review.rating}
+                    <BsStarfill/> {review.rating}
                 </p>
         )
         }
@@ -70,7 +70,7 @@ class Movie extends Component {
                     <ListGroup>
                         <ListGroupItem>{currentMovie.title}</ListGroupItem>
                         <ListGroupItem><ActorInfo actors={currentMovie.actors} /></ListGroupItem>
-                        <ListGroupItem><h4><FontAwesomeIcon icon={faStar}/> {currentMovie.avgRating}</h4></ListGroupItem>
+                        <ListGroupItem><h4><BsStarfill/> {currentMovie.avgRating}</h4></ListGroupItem>
                     </ListGroup>
                     <Card.Body><ReviewInfo reviews={currentMovie.reviews} /></Card.Body>
                 </Card>
