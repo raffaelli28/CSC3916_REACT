@@ -7,6 +7,7 @@ import Authentication from './components/authentication';
 import {HashRouter, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './stores/store';
+import Moviedetail from './components/moviedetail';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
             <Route exact path="/" render={()=><MovieList />}/>
             <Route exact path="/movielist" render={()=><MovieList />}/>
             <Route exact path="/movie/:movieId" render={()=><Movie />}/>
+            
+            <Route exact path = "/moviedetail" render={()=><Moviedetail/>}/>
+
             <Route path="/signin" render={()=><Authentication />}/>
           </div>
         </HashRouter>

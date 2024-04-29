@@ -14,6 +14,12 @@ class MovieDetail extends Component {
         }
     }
 
+    // Adding the button
+    getDetails() {
+        const{dispatch} = this.props;
+        dispatch(componentDidMount(this.state.details))
+    }
+
     render() {
         const DetailInfo = () => {
             if (!this.props.selectedMovie) {
@@ -44,6 +50,7 @@ class MovieDetail extends Component {
                             </p>
                         )}
                     </Card.Body>
+
                 </Card>
             )
         }
