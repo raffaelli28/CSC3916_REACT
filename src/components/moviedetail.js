@@ -14,11 +14,6 @@ class MovieDetail extends Component {
         }
     }
 
-    // Adding the button
-    getDetails() {
-        const{dispatch} = this.props;
-        dispatch(componentDidMount(this.state.details))
-    }
 
     render() {
         const DetailInfo = () => {
