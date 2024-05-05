@@ -5,6 +5,7 @@ import App from './App';
 import { StateProvider } from './components/StateProvider';
 import reducer, { initialState } from './components/reducer';
 
+/*
 ReactDOM.render(
   <React.StrictMode>
     <StateProvider initialState={initialState} reducer={reducer}>
@@ -12,4 +13,14 @@ ReactDOM.render(
     </StateProvider>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
+*/
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <App />
+    </StateProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+)
