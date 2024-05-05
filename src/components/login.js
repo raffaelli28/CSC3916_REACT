@@ -1,58 +1,35 @@
-import React, { Component } from 'react';
-import { submitLogin } from '../actions/authActions';
-import { connect } from 'react-redux';
-import { Form, Button } from 'react-bootstrap';
+import React from 'react'
+import { Button } from '@material-ui/core'
+import './Login.css'
+import { auth, provider } from '../firebase'
+import { actionTypes } from './reducer'
+import { useStateValue } from './StateProvider'
 
-class Login extends Component {
+const Login = () => {
+    const [{}, dispatch] = useStateValue()
 
-    constructor(props) {
-        super(props);
-        this.updateDetails = this.updateDetails.bind(this);
-        this.login = this.login.bind(this);
-
-        this.state = {
-            details:{
-                username: '',
-                password: ''
-            }
-        };
+    const signIn = () => {
+        auth.signInWithPopup(provider)
+            .then(result => {
+                dispatch({
+                    type: actionTypes.SET_USER,
+                    user: result.user
+                })
+            })
+            .catch(error => alert(error.message))
     }
 
-    updateDetails(event){
-        let updateDetails = Object.assign({}, this.state.details);
-
-        updateDetails[event.target.id] = event.target.value;
-        this.setState({
-            details: updateDetails
-        });
-    }
-
-    login() {
-        const {dispatch} = this.props;
-        dispatch(submitLogin(this.state.details));
-    }
-
-    render(){
-        return (
-            <Form className='form-horizontal'>
-                <Form.Group controlId="username">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control onChange={this.updateDetails} value={this.state.details.username} type="email" placeholder="Enter email" />
-                </Form.Group>
-
-                <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={this.updateDetails} value={this.state.details.password}  type="password" placeholder="Password" />
-                </Form.Group>
-                <Button onClick={this.login}>Sign in</Button>
-            </Form>
-        )
-    }
+    return (
+        <div className="login">
+            <div className="login__container">
+                <img src="logo512.png" alt="whatsapp" />
+                <div className="login__text">
+                    <h1>Sign in to Messaging App</h1>
+                </div> 
+                <Button onClick={signIn}>Sign In with Google</Button>
+            </div>
+        </div>
+    )
 }
 
-const mapStateToProps = state => {
-    return {
-    }
-}
-
-export default connect(mapStateToProps)(Login);
+export default Login
